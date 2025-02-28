@@ -14,6 +14,7 @@ use App\Actions\StoreMedia;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\StoreSections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Console\Input\Input;
@@ -35,7 +36,8 @@ class ProductController extends Controller
     {
         $categories = ListCategory::execute();
         $brands = ListBrand::execute();
-        return view("dashboard.product.create", compact('categories', 'brands'));
+        $sections = StoreSections::all();
+        return view("dashboard.product.create", compact('categories', 'brands','sections'));
     }
 
     /**

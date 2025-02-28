@@ -78,6 +78,70 @@
                     </select>
                 </div>
                 <div>
+                    <label for="section_id"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Section</label>
+                    <select id="section_id" name="section_id"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                         <option value=""></option>
+                        @foreach ($sections as $section)
+                            <option value="{{ $section->id }}">{{ $section->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div>
+                    <label for="branch_id"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Branch</label>
+                    <select id="branchesSelect" name="branch_id"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </select>
+                </div>
+                <script>
+                    $(document).ready(function() {
+                        $('#section_id').on('change', function() {
+                            var sectionId = $(this).val();
+                            if (sectionId) {
+                                // Show loading indicator
+                                $('#loading').show();
+                                // $('#branchesSelect').show();
+                                $('#branchesSelect').empty();
+                                // Send AJAX request
+                                $.ajax({
+                                    url: '/api/branches/' + sectionId + '/section',
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    success: function(data) {
+                                        console.log(data);
+                                        // Hide loading indicator
+                                        $('#loading').hide();
+                                        // Clear existing rows
+                                        $('#branchesSelect tbody').empty();
+                                        // Append new rows with AJAX data
+                                        if (data.length > 0) {
+                                            $.each(data, function(key, branch) {
+                                                $('#branchesSelect').append(
+                                                "<option value='" + branch.id + "'>" + branch.name + "</option>"
+                                                );
+                                            });
+                                            $('#branchesSelect').show();
+                                        } else {
+                                            $('#branchesSelect').empty();
+                                            $('#branchesSelect').show();
+                                        }
+                                    },
+                                    error: function() {
+                                        $('#loading').hide();
+                                        alert('Failed to fetch branches. Please try again.');
+                                    }
+                                });
+                            } else {
+                                // Clear the table if no section is selected
+                                $('#branchesSelect').empty();
+                                $('#branchesSelect').hide();
+                            }
+                        });
+                    });
+                </script>
+                <div>
                     <label for="status"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                     <select id="status" name="status"

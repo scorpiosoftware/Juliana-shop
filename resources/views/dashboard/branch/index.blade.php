@@ -38,8 +38,9 @@
                         class="inline-block rounded-sm bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:ring-3 focus:outline-hidden"
                         type="button">
                         Create
-                </a>
+                    </a>
                 </div>
+
             </div>
         </div>
     </header>
@@ -64,9 +65,17 @@
                     class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
             </div>
         </form>
+        <div>
+            <select name="section_id" id="sectionDropdown">
+                <option value="">ALL</option>
+                @foreach ($sections as $section)
+                    <option value="{{ $section->id }}">{{ $section->name }}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg" id="branchesTable" style="display: none;">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase text-nowrap bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
@@ -82,27 +91,124 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($records as $record)
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="px-6 py-4 font-extrabold whitespace-nowrap text-black text-base">
-                            {{ $record->name }}
-                        </td>
-                        <td class="px-6 py-4 font-bold whitespace-nowrap text-black text-base">
-                          <div class="bg-amber-50 flex justify-start items-start rounded-full border p-1 cursor-pointer">{{ $record->section->name }}</div>  
-                        </td>
-                        <td class="px-6 py-3 text-right flex justify-start items-center pt-[30px] space-x-4">
-                            <a href="{{ route('branch.edit', $record->id) }}"
-                                class="font-medium border p-1 text-blue-600 hover:underline">Edit</a>
-
-                            <form action="{{ route('branch.destroy', $record->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button class="border p-1 text-red-600 hover:text-red-700">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
+                =
             </tbody>
         </table>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: '/api/branches/',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                        // Hide loading indicator
+                        $('#loading').hide();
+                        // Clear existing rows
+                        $('#branchesTable tbody').empty();
+                        // Append new rows with AJAX data
+                        if (data.length > 0) {
+                            $.each(data, function(key, branch) {
+                                $('#branchesTable tbody').append(
+                                    '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">' +
+                                    '<td class="px-6 py-4 font-bold whitespace-nowrap text-black text-base">' +
+                                    branch.name + '</td>' +
+                                    '<td class="px-6 py-4 font-bold whitespace-nowrap text-black text-base">' +
+                                    '<div class="bg-amber-50 flex justify-start items-start rounded-full border p-1 cursor-pointer">' +
+                                    branch.section.name + '</div></td>' +
+                                    '<td class="px-6 py-3 text-right flex justify-start items-center pt-[30px] space-x-4">' +
+                                    "<a href='/dashboard/branch/" + branch.id +
+                                    "/edit' class='font-medium border p-1 text-blue-600 hover:underline'>Edit</a>" +
+                                    "<form action='branch/" + branch.id + "/delete" +
+                                    "' method='POST'>" +
+                                    '<input type="hidden" name="_token" value="' +
+                                    $('meta[name="csrf-token"]').attr(
+                                        'content') + '">' +
+                                    '<input type="hidden" name="_method" value="DELETE">' +
+                                    "<button type='submit' class='border p-1 text-red-600 hover:text-red-700'>Delete</button>" +
+                                    "</form>" +
+                                    "</td>" +
+                                    "</tr>"
+                                );
+                            });
+                            $('#branchesTable').show();
+                        } else {
+                            $('#branchesTable tbody').append(
+                                '<tr><td colspan="2">No branches found for this section.</td></tr>'
+                            );
+                            $('#branchesTable').show();
+                        }
+                    },
+                    error: function() {
+                        $('#loading').hide();
+                        alert('Failed to fetch branches. Please try again.');
+                    }
+                });
+
+                $('#sectionDropdown').on('change', function() {
+                    var sectionId = $(this).val();
+                    if (sectionId) {
+                        // Show loading indicator
+                        $('#loading').show();
+                        $('#branchesTable').hide();
+                        // Send AJAX request
+                        $.ajax({
+                            url: '/api/branches/' + sectionId + '/section',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data) {
+                                console.log(data);
+                                // Hide loading indicator
+                                $('#loading').hide();
+                                // Clear existing rows
+                                $('#branchesTable tbody').empty();
+                                // Append new rows with AJAX data
+                                if (data.length > 0) {
+                                    $.each(data, function(key, branch) {
+                                        $('#branchesTable tbody').append(
+                                            '<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">' +
+                                            '<td class="px-6 py-4 font-bold whitespace-nowrap text-black text-base">' +
+
+                                            branch.name + '</td>' +
+                                            '<td class="px-6 py-4 font-bold whitespace-nowrap text-black text-base">' +
+                                            '<div class="bg-amber-50 flex justify-start items-start rounded-full border p-1 cursor-pointer">' +
+                                            branch.section.name + '</div></td>' +
+                                            '<td class="px-6 py-3 text-right flex justify-start items-center pt-[30px] space-x-4">' +
+                                            "<a href='/dashboard/branch/" + branch.id +
+                                            "/edit' class='font-medium border p-1 text-blue-600 hover:underline'>Edit</a>" +
+                                            "<form action='branch/" + branch.id +
+                                            "/delete" +
+                                            "' method='POST'>" +
+                                            '<input type="hidden" name="_token" value="' +
+                                            $('meta[name="csrf-token"]').attr(
+                                                'content') + '">' +
+                                            '<input type="hidden" name="_method" value="DELETE">' +
+                                            "<button type='submit' class='border p-1 text-red-600 hover:text-red-700'>Delete</button>" +
+                                            "</form>" +
+                                            "</td>" +
+                                            "</tr>"
+                                        );
+                                    });
+                                    $('#branchesTable').show();
+                                } else {
+                                    $('#branchesTable tbody').append(
+                                        '<tr><td colspan="2">No branches found for this section.</td></tr>'
+                                    );
+                                    $('#branchesTable').show();
+                                }
+                            },
+                            error: function() {
+                                $('#loading').hide();
+                                alert('Failed to fetch branches. Please try again.');
+                            }
+                        });
+                    } else {
+                        // Clear the table if no section is selected
+                        $('#branchesTable tbody').empty();
+                        $('#branchesTable').hide();
+                    }
+                });
+            });
+        </script>
     </div>
 </x-app-layout>

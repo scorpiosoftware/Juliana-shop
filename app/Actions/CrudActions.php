@@ -65,7 +65,7 @@ class CrudActions
         }
     }
 
-    public function delete(int $id): ?bool
+    public function delete(string $id): ?bool
     {
         try {
             $resource = $this->model->findOrFail($id);

@@ -21,7 +21,20 @@ class BranchController extends Controller
     public function index()
     {
         $records = $this->crud->read();
-        return view('dashboard.branch.index', compact('records'));
+        $sections = StoreSections::all();
+        return view('dashboard.branch.index', compact('records','sections'));
+    }
+
+    public function getBranches($id){
+        $branches = Branch::with('section')->where('section_id', $id)->get();
+        return response()->json(    
+             $branches);
+    }
+
+    public function getAllBranches(){
+        $branches = Branch::with('section')->get();
+        return response()->json(    
+             $branches);
     }
 
     /**
@@ -31,6 +44,13 @@ class BranchController extends Controller
     {
         $sections = StoreSections::all();
         return view('dashboard.branch.create',compact('sections'));
+    }
+
+    public function createWithSection($id)
+    {
+        $sections = StoreSections::all();
+
+        return view('dashboard.branch.create',compact('sections','id'));
     }
 
     /**
@@ -45,7 +65,7 @@ class BranchController extends Controller
         $inputs = $request->all();
         $record = $this->crud->create($inputs);
         if ($record) {
-            return redirect()->back()->with("success", "Append Record Success !");
+            return $this->index();
         } else {
             return redirect()->back()->with("error", "Check requirments error on validation !");
         }

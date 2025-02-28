@@ -24,7 +24,8 @@ class Product extends Model
         'main_image_url',
         'status',
         'brand_id',
-        'section_id'
+        'section_id',
+        'branch_id'
     ];
     public function images()
     {

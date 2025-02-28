@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\CrudActions;
+use App\Models\Branch;
 use App\Models\StoreSections;
 use Illuminate\Http\Request;
 
@@ -55,9 +56,7 @@ class StoreSectionController extends Controller
         //
     }
 
-    public function getBranches($id){
-        
-    }
+
 
     /**
      * Show the form for editing the specified resource.

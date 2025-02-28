@@ -99,8 +99,15 @@
                           </div>
                         </td>
                         <td class="px-6 py-3 text-right flex justify-start items-center pt-[30px] space-x-4">
+                            <form action="{{ route('branch.createSelectedSection', $record->id) }}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <button class="font-medium text-yellow-400 hover:underline">Add Branch</button>
+                            </form>
+                            {{-- <a href=""
+                                class="font-medium text-yellow-400 hover:underline">Add Branch</a> --}}
                             <a href="{{ route('storeSections.edit', $record->id) }}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium text-blue-600 hover:underline">Edit</a>
 
                             <form action="{{ route('storeSections.destroy', $record->id) }}" method="POST">
                                 @csrf
