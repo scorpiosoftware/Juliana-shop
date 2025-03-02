@@ -4,7 +4,7 @@
             <div class="flex items-center space-x-8">
                 <div class="shrink-0 md:w-32 w-[75px]">
                     <a href="/" title="" class="">
-                        <img class="block" src="{{ URL::to('storage/'. $carousel->logo_url) }}" alt="">
+                        <img class="block" src="{{ URL::to('storage/' . $carousel->logo_url) }}" alt="">
                     </a>
                 </div>
             </div>
@@ -39,106 +39,106 @@
 
             <div class="flex items-center space-x-2">
                 <livewire:cart>
-                <div class="bg-slate-50 rounded-full px-2 py-2">
-                    <a href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i></a>
-                </div>
-                <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button"
-                    class="inline-flex items-center bg-slate-50 rounded-full  justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                    <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-width="2"
-                            d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                    </svg>
-                    @guest
-                        @if (session('lang') == 'en')
-                            Account
+                    <div class="bg-slate-50 rounded-full px-2 py-2">
+                        <a href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i></a>
+                    </div>
+                    <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button"
+                        class="inline-flex items-center bg-slate-50 rounded-full  justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
+                        <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-width="2"
+                                d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        @guest
+                            @if (session('lang') == 'en')
+                                Account
                             @else
-                            الحساب
-                        @endif
-                    @endguest
-                    @auth
-                        {{ Auth::user()->name }}
-                    @endauth
-                    <svg class="w-4 h-4 text-gray-900 dark:text-white ms-1" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 9-7 7-7-7" />
-                    </svg>
-                </button>
+                                الحساب
+                            @endif
+                        @endguest
+                        @auth
+                            {{ Auth::user()->name }}
+                        @endauth
+                        <svg class="w-4 h-4 text-gray-900 dark:text-white ms-1" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
 
-                <div id="userDropdown1"
-                    class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
+                    <div id="userDropdown1"
+                        class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
 
-                    @guest
-                        <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                            <li><a href="{{ route('login') }}" title=""
-                                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    @if (session('lang') == 'en')
-                                    Login
-                                    @else
-                                    تسجيل
-                                    @endif
-                                 </a></li>
-                            <li><a href="{{ route('register') }}" title=""
-                                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    @if (session('lang') == 'en')
-                                    Sign Up 
-                                    @else
-                                    انشاء
-                                    @endif
-                                    
-                                </a></li>
-                        </ul>
-                    @endguest
+                        @guest
+                            <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                                <li><a href="{{ route('login') }}" title=""
+                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        @if (session('lang') == 'en')
+                                            Login
+                                        @else
+                                            تسجيل
+                                        @endif
+                                    </a></li>
+                                <li><a href="{{ route('register') }}" title=""
+                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        @if (session('lang') == 'en')
+                                            Sign Up
+                                        @else
+                                            انشاء
+                                        @endif
+
+                                    </a></li>
+                            </ul>
+                        @endguest
 
 
-                    @auth
-                    @if(Auth::user()->role_id == 1)
-                        <div class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                            <a href="{{ route('dashboard.index') }}" class="px-2">
-                                @if (session('lang') == 'en')
-                                Dashboard 
-                                @else
-                                قائمة الاعدادات
-                                @endif
-                               
-                            </a>
-                        </div>
-                        @endif
-                        <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                @method('POST')
-                                <button title=""
-                                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                    @if (session('lang') == 'en')
-                                    Sign Out 
-                                    @else
-                                    خروج
-                                    @endif
+                        @auth
+                            @if (Auth::user()->role_id == 1)
+                                <div class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                                    <a href="{{ route('dashboard.index') }}" class="px-2">
+                                        @if (session('lang') == 'en')
+                                            Dashboard
+                                        @else
+                                            قائمة الاعدادات
+                                        @endif
 
-                                  
-                                </button>
+                                    </a>
+                                </div>
+                            @endif
+                            <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    @method('POST')
+                                    <button title=""
+                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        @if (session('lang') == 'en')
+                                            Sign Out
+                                        @else
+                                            خروج
+                                        @endif
 
-                            </form>
-                        </div>
-                    @endauth
 
-                </div>
+                                    </button>
 
-                <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1"
-                    aria-controls="ecommerce-navbar-menu-1" aria-expanded="false"
-                    class="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-gray-700 p-2 text-gray-900 dark:text-white">
-                    <span class="sr-only">
-                        Open Menu
-                    </span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="none" viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                            d="M5 7h14M5 12h14M5 17h14" />
-                    </svg>
-                </button>
+                                </form>
+                            </div>
+                        @endauth
+
+                    </div>
+
+                    <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1"
+                        aria-controls="ecommerce-navbar-menu-1" aria-expanded="false"
+                        class="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-gray-700 p-2 text-gray-900 dark:text-white">
+                        <span class="sr-only">
+                            Open Menu
+                        </span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                d="M5 7h14M5 12h14M5 17h14" />
+                        </svg>
+                    </button>
             </div>
         </div>
 
@@ -176,7 +176,8 @@
 
 
         <div class="flex items-center justify-end space-x-4 p-2 ">
-            <select class="rounded-lg bg-gray-50 text-base leading-10" name="lang" id="lang" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+            <select class="rounded-lg bg-gray-50 text-base leading-10" name="lang" id="lang"
+                onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                 <option value="" selected>Language</option>
                 <option value="/lang/en">English</option>
                 <option value="/lang/ar">Arabic</option>

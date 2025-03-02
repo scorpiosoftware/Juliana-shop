@@ -35,6 +35,14 @@ class ListProduct {
             $brandsArray = $inputs['brands'];
             $records = $records->whereIn('brand_id', $brandsArray);
         }
+        if (!empty($inputs['sections'])) {
+            $sectionsArray = $inputs['sections'];
+            $records = $records->whereIn('section_id', $sectionsArray);
+        }
+        if (!empty($inputs['branches'])) {
+            $branchesArray = $inputs['branches'];
+            $records = $records->whereIn('branch_id', $branchesArray);
+        }
         if(!empty($inputs['sorting'])) {
             switch ($inputs['sorting']) {
                 case 'asc': $records = $records->orderBy('id','ASC');break;

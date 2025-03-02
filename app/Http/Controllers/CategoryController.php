@@ -111,15 +111,16 @@ class CategoryController extends Controller
     {
         $record = GetCategory::execute($id);
         $delete_image = DeleteMedia::execute($record->image_url);
-        if($delete_image){
-            $record = DestroyCategory::execute($record->id);
-            if($record){
-                return redirect()->back()->with("success", "Append Record Success !");
-            }else{
-                return redirect()->back()->with("error", "Error On delete Record !");
-            }
+        $record = DestroyCategory::execute($record->id);
+        if($record){
+            return redirect()->back()->with("success", "Append Record Success !");
         }else{
             return redirect()->back()->with("error", "Error On delete Record !");
         }
+        // if($delete_image){
+
+        // }else{
+        //     return redirect()->back()->with("error", "Error On delete Record !");
+        // }
     }
 }

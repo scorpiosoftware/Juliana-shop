@@ -1,4 +1,4 @@
-<div class="product-grid transition-all delay-75 hover:scale-110  wow fadeInUp" data-wow-delay="0.1s">
+<div class="product-grid transition-all delay-75 hover:scale-110  wow fadeInUp" data-wow-delay=".25s">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <div class="product-image">
         <a name="{{ $item->id }}" href="{{ route('shop.show', $item->id) }}" class="image">

@@ -1,28 +1,85 @@
-
-<div class=" mx-auto md:px-24 pb-10 max-w-screen-xl ">
-    <div class="flex justify-center items-center pt-4 pb-10">
-        <h1 class="font-extrabold text-gray-600 underline text-2xl">
-            {{ session('lang') == 'en' ? 'Our Categories' : 'اصنافنا' }}
-        </h1>
+<div class="">
+    <div class="category-container mx-auto">
+        <h2 class="category-title">{{ session('lang') == 'en' ? 'Our Categories' : 'اصنافنا' }}</h2>
+        <div class="category-slider">
+           @foreach ($categories as $item)
+           <div class=" category-item">
+            <div class=""><img src="{{ URL::to('storage/'.$item->image_url) }}" alt="Brand 1"></div>
+            <p class="text-white font-bold">{{ $item->name_en }}</p>
+           </div>
+           @endforeach
+        </div>
      </div>
-    <div class="grid grid-cols-3 md:grid-cols-5  md:gap-4" >
-        @foreach ($categories as $item)
-        @if (!empty($item->image_url))
-        <div class="items-center">
-            <div>
-                <form action="{{ route('filter.products') }}" method="POST">
-                    @csrf
-                    @method('POST')
-                <button type="submit" class="wow fadeInUp" data-wow-delay="0.2s" href=""><img class="transition-all delay-75 rounded-full border hover:scale-[1.2]" src="{{ URL::to('storage/'.$item->image_url) }}" alt=""></button>
-                </form>
-                </div>
-            
-            <div><p class="text-center font-medium">{!! session('lang') == 'en' ? $item->name_en : $item->name_ar !!}</p></div>
-        </div>  
-        @endif
+    <script>
+        // Duplicate itemsCat for seamless loop
+      const slidercat = document.querySelector('.category-slider');
+      const itemsCat = document.querySelectorAll('.category-item');
+      itemsCat.forEach(item => {
+          const clone = item.cloneNode(true);
+          slidercat.appendChild(clone);
+      });
 
-        @endforeach
+      // Scroll variables
+      let currentTranslateXCat = 0;
+      let scrollTimeoutCat;
+      const scrollSpeedCat = 0.6;
+      let isAutoScrollCat = true;
+      const autoscrollSpeedCat = 0.2;
 
-    </div>
+      // Calculate scroll limits
+      const itemWidthCat = itemsCat[0].offsetWidth;
+      const gapCat = 50;
+      const originalWidthCat = (itemWidthCat + gapCat) * itemsCat.length - gapCat;
 
+      // Single continuous animation loop
+      function animateCat() {
+          if (isAutoScrollCat) {
+              currentTranslateXCat -= autoscrollSpeedCat;
+              if (currentTranslateXCat <= -originalWidthCat) {
+                  currentTranslateXCat += originalWidthCat;
+              }
+              slidercat.style.transform = `translateX(${currentTranslateXCat}px)`;
+          }
+          requestAnimationFrame(animateCat);
+      }
+      animateCat();
+
+      // Mouse wheel handler
+      const containerCat = document.querySelector('.category-container');
+      containerCat.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          isAutoScrollCat = false;
+          
+          const delta = e.deltaY * scrollSpeedCat;
+          currentTranslateXCat = Math.max(Math.min(currentTranslateXCat + delta, 0), -originalWidthCat);
+          
+          slidercat.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          slidercat.style.transform = `translateX(${currentTranslateXCat}px)`;
+          
+          clearTimeout(scrollTimeoutCat);
+          scrollTimeoutCat = setTimeout(() => {
+              isAutoScrollCat = true;
+              slidercat.style.transition = 'none';
+          }, 3000);
+      });
+
+      // Hover effects
+      document.querySelectorAll('.category-item').forEach(item => {
+          item.addEventListener('mouseenter', () => {
+              item.style.transform = `rotate(${Math.random() * 4 - 2}deg) translateY(-5px) scale(1.05)`;
+          });
+          item.addEventListener('mouseleave', () => {
+              item.style.transform = 'translateY(0) scale(1)';
+          });
+      });
+
+      // Pause on container hover
+      containerCat.addEventListener('mouseenter', () => {
+          isAutoScrollCat = false;
+      });
+
+      containerCat.addEventListener('mouseleave', () => {
+          isAutoScrollCat = true;
+      });
+  </script>
 </div>

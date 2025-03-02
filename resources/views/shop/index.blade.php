@@ -6,7 +6,7 @@
         class="fixed top-0 left-0 z-40 md:hidden h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-[350px] dark:bg-gray-800"
         tabindex="-1" aria-labelledby="drawer-disabled-backdrop-label">
         <h5 id="drawer-disabled-backdrop-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
-          {{ session('lang') == 'en' ? 'Filter' : 'منقي' }}</h5>
+            {{ session('lang') == 'en' ? 'Filter' : 'منقي' }}</h5>
         <div class="py-4 overflow-y-auto max-w-2xl">
             <form action="{{ route('filter.products') }}" method="POST">
                 @csrf
@@ -15,10 +15,13 @@
                     <h1>Sort by</h1>
                     <select name="sorting" id="sorting">
                         <option value="asc">{{ session('lang') == 'en' ? 'Ascending' : 'تصاعدي' }}</option>
-                        <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>{{ session('lang') == 'en' ? 'Descending' : 'تنازلي' }}</option>
-                        <option value="low_price" @if (request()->input('sorting') == 'low_price') selected @endif>{{ session('lang') == 'en' ? 'Price - Low to high' : 'السعر من الارخص للاعلى' }}
+                        <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>
+                            {{ session('lang') == 'en' ? 'Descending' : 'تنازلي' }}</option>
+                        <option value="low_price" @if (request()->input('sorting') == 'low_price') selected @endif>
+                            {{ session('lang') == 'en' ? 'Price - Low to high' : 'السعر من الارخص للاعلى' }}
                         </option>
-                        <option value="high_price" @if (request()->input('sorting') == 'high_price') selected @endif>{{ session('lang') == 'en' ? 'Price - High to low' : 'السعر الاعلى الى الادنى' }}
+                        <option value="high_price" @if (request()->input('sorting') == 'high_price') selected @endif>
+                            {{ session('lang') == 'en' ? 'Price - High to low' : 'السعر الاعلى الى الادنى' }}
                         </option>
                     </select>
                 </div>
@@ -26,7 +29,8 @@
                     <h1>{{ session('lang') == 'en' ? 'Categories' : 'فئات' }}</h1>
                     @foreach ($categories as $cat)
                         <div class="flex items-center">
-                            <input id="categories" type="checkbox" value="{{ $cat->id }}" name="categories[]" class="w-4
+                            <input id="categories" type="checkbox" value="{{ $cat->id }}" name="categories[]"
+                                class="w-4
                                 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
                                 dark:border-gray-600"
@@ -39,10 +43,10 @@
                     >
                     <label for="categories"
                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ session('lang') == 'en' ? $cat->name_en : $cat->name_ar }}</label>
-                      
-                    </div>
-                @endforeach
+
                 </div>
+                @endforeach
+        </div>
 
         <div class="border p-2">
             <h1>{{ session('lang') == 'en' ? 'Brands' : 'العلامات التجارية' }}</h1>
@@ -65,7 +69,7 @@
     </div>
 
     <div class="border p-2">
-        <h1>{{ session('lang') == 'en' ? 'Price $' :'السعر $' }}</h1>
+        <h1>{{ session('lang') == 'en' ? 'Price $' : 'السعر $' }}</h1>
         <div class="flex space-x-2 justify-between items-center ">
             <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="From 0 $"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
@@ -73,8 +77,8 @@
                 @if (!empty(request()->input('max_price'))) value = {{ request()->input('max_price') }} @endif />
         </div>
     </div>
-    <div class="flex justify-center w-full text-lg pt-2">
-        <button type="submit" class=" bg-slate border p-1 w-full rounded-md text-black">Apply</button>
+    <div class="flex justify-end text-sm pt-2">
+        <button type="submit" class=" bg-blue-700 p-2 rounded-md text-white">Apply</button>
     </div>
     </form>
 
@@ -89,7 +93,7 @@
     </button>
 
     </div>
-    <div class="bg-white flex justify-center items-start space-x-[200px] ">
+    <div class="bg-white flex justify-center items-start">
         <div class="md:block hidden py-4 px-6  overflow-y-auto ">
             <form action="{{ route('filter.products') }}" method="POST">
                 @csrf
@@ -98,10 +102,13 @@
                     <h1>Sort by</h1>
                     <select name="sorting" id="sorting">
                         <option value="asc">{{ session('lang') == 'en' ? 'Ascending' : 'تصاعدي' }}</option>
-                        <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>{{ session('lang') == 'en' ? 'Descending' : 'تنازلي' }}</option>
-                        <option value="low_price" @if (request()->input('sorting') == 'low_price') selected @endif>{{ session('lang') == 'en' ? 'Price - Low to high' : 'السعر من الارخص للاعلى' }}
+                        <option value="desc" @if (request()->input('sorting') == 'desc') selected @endif>
+                            {{ session('lang') == 'en' ? 'Descending' : 'تنازلي' }}</option>
+                        <option value="low_price" @if (request()->input('sorting') == 'low_price') selected @endif>
+                            {{ session('lang') == 'en' ? 'Price - Low to high' : 'السعر من الارخص للاعلى' }}
                         </option>
-                        <option value="high_price" @if (request()->input('sorting') == 'high_price') selected @endif>{{ session('lang') == 'en' ? 'Price - High to low' : 'السعر الاعلى الى الادنى' }}
+                        <option value="high_price" @if (request()->input('sorting') == 'high_price') selected @endif>
+                            {{ session('lang') == 'en' ? 'Price - High to low' : 'السعر الاعلى الى الادنى' }}
                         </option>
                     </select>
                 </div>
@@ -110,10 +117,10 @@
                         <h1>{{ session('lang') == 'en' ? 'Categories' : 'فئات' }}</h1>
                         @foreach ($categories as $cat)
                             <div class="flex items-center">
-                                <input id="categories" type="checkbox" value="{{ $cat->id }}" name="categories[] class="w-4
-                                    h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                    dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
-                                    dark:border-gray-600"
+                                <input id="categories" type="checkbox" value="{{ $cat->id }}"
+                                    name="categories[] class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
+                                    focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
+                                    dark:bg-gray-700 dark:border-gray-600"
                                     @if (!empty(request()->input('categories'))) @foreach (request()->input('categories') as $index)
                                     @if ($index == $cat->id)
                                     checked
@@ -123,10 +130,10 @@
                         >
                         <label for="categories"
                             class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ session('lang') == 'en' ? $cat->name_en : $cat->name_ar }}</label>
-                          
-                        </div>
-                    @endforeach
+
                     </div>
+                    @endforeach
+                </div>
         </div>
 
         <div class="border p-2">
@@ -148,18 +155,39 @@
         </div>
         @endforeach
     </div>
+    
+    <div class="border p-2">
+        <h1>{{ session('lang') == 'en' ? 'STORES' : 'المتاجر' }}</h1>
+        @foreach ($sections as $section)
+            <div class="flex items-center">
+                <input id="section" type="checkbox" value="{{ $section->id }}" name="sections[] class="w-4 h-4
+                    text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                    dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    @if (!empty(request()->input('sections'))) @foreach (request()->input('sections') as $b)
+                            @if ($b == $section->id)
+                            checked
+                            @break @endif
+                    @endforeach
+        @endif>
+
+        <label for="brands"
+            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $section->name }}</label>
+    </div>
+    @endforeach
+</div>
 
     <div class="border p-2">
-        <h1>{{ session('lang') == 'en' ? 'Price $' :'السعر $' }}</h1>
+        <h1>{{ session('lang') == 'en' ? 'Price $' : 'السعر $' }}</h1>
         <div class="flex space-x-2 justify-between items-center ">
             <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="From 0 $"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
-            <input type="number" step="any" min="0" class="w-24 h-8" name="max_price" placeholder="To Max $"
+            <input type="number" step="any" min="0" class="w-24 h-8" name="max_price"
+                placeholder="To Max $"
                 @if (!empty(request()->input('max_price'))) value = {{ request()->input('max_price') }} @endif />
         </div>
     </div>
-    <div class="flex justify-center w-full text-lg pt-2">
-        <button type="submit" class=" bg-slate-500 z-50 p-1 w-full rounded-md border text-black">Apply</button>
+    <div class="flex justify-end text-sm pt-2">
+        <button type="submit" class=" bg-blue-700 p-2 rounded-md text-white">Apply</button>
         {{-- <button type="reset" class=" bg-blue-300 p-2 rounded-md text-white">Clear</button> --}}
     </div>
     </form>
@@ -167,17 +195,21 @@
     <div class="md:max-w-4xl pt-4">
         <div class="text-start md:hidden justify-end p-4 flex">
             <button
-                class="text-black border-2 border-black bg-slate-100 w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5  focus:outline-none"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 type="button" data-drawer-target="drawer-disabled-backdrop" data-drawer-show="drawer-disabled-backdrop"
                 data-drawer-backdrop="false" aria-controls="drawer-disabled-backdrop">
                 {{ session('lang') == 'en' ? 'Filter' : 'تنقية' }}
             </button>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 px-10 md:px-0">
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-4 px-10 md:px-0">
             @if ($products->count() <= 0)
-                <div class="text-center flex items-center justify-center w-full"> {{ session('lang') == 'en' ? 'No results found' : 'لم يتم العثور على نتائج' }}</div>
+                <div class="text-center flex items-center justify-center w-full">
+                    {{ session('lang') == 'en' ? 'No results found' : 'لم يتم العثور على نتائج' }}</div>
             @endif
             @foreach ($products as $item)
+                <x-home.product :item="$item" />
+                <x-home.product :item="$item" />
+                <x-home.product :item="$item" />
                 <x-home.product :item="$item" />
             @endforeach
             {{-- <nav aria-label="Page navigation example" class="p-4">

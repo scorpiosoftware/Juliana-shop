@@ -1,45 +1,88 @@
-<div class="container px-12 md:px-24 mx-auto max-w-screen-xl shadow-lg p-2 rounded-md">
-   <div class="flex justify-center items-center pb-4 gap-4">
-      <h1 class="font-bold text-gray-600 underline text-3xl">
-         @if (session('lang') == 'en')
-         Our Brands
-         @else
-         علاماتنا التجارية
-         @endif
-      </h1>
+<div class="brands-container mx-auto">
+   <h2 class="brands-title">Brands</h2>
+   <div class="brands-slider">
+      @foreach ($brands as $brand)
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
+      @endforeach
    </div>
+   <script>
+        // Duplicate items for seamless loop
+        const slider = document.querySelector('.brands-slider');
+      const items = document.querySelectorAll('.brand-item');
+      items.forEach(item => {
+          const clone = item.cloneNode(true);
+          slider.appendChild(clone);
+      });
 
-   {{-- <div class="flex overflow-x-auto overflow-y-hidden scroll-smooth focus:scroll-auto justify-center content-center gap-5">
-      @foreach ($brands as $brand)
-      <a class="wow fadeInUp shadow-sm" data-wow-delay="0.1s" href=""><img class="transition-all box-border size-32 delay-75 hover:scale-[1.2]" src="{{ URL::to('storage/'.$brand->image_url) }}"  alt=""></a>
-      @endforeach
-   </div> --}}
-   <div class="md:grid md:grid-cols-4 flex items-center justify-center gap-5 mx-auto max-w-4xl mt-3">
-      @foreach ($brands as $brand)
-      <div class="flex items-center justify-center md:w-32 w-96">
-         <img class="transition-all box-border size-60 md:size-20 delay-75 hover:scale-[1.2]" src="{{ URL::to('storage/'.$brand->image_url) }}"  alt="">
-      </div>
-      @endforeach
-   </div>
+      // Scroll variables
+      let currentTranslateX = 0;
+      let scrollTimeout;
+      const scrollSpeed = 0.6;
+      let isAutoScroll = true;
+      const autoScrollSpeed = 1.2;
+
+      // Calculate scroll limits
+      const itemWidth = items[0].offsetWidth;
+      const gap = 50;
+      const originalWidth = (itemWidth + gap) * items.length - gap;
+
+      // Single continuous animation loop
+      function animate() {
+          if (isAutoScroll) {
+              currentTranslateX -= autoScrollSpeed;
+              if (currentTranslateX <= -originalWidth) {
+                  currentTranslateX += originalWidth;
+              }
+              slider.style.transform = `translateX(${currentTranslateX}px)`;
+          }
+          requestAnimationFrame(animate);
+      }
+      animate();
+
+      // Mouse wheel handler
+      const container = document.querySelector('.brands-container');
+      container.addEventListener('wheel', (e) => {
+          e.preventDefault();
+          isAutoScroll = false;
+          
+          const delta = e.deltaY * scrollSpeed;
+          currentTranslateX = Math.max(Math.min(currentTranslateX + delta, 0), -originalWidth);
+          
+          slider.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+          slider.style.transform = `translateX(${currentTranslateX}px)`;
+          
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+              isAutoScroll = true;
+              slider.style.transition = 'none';
+          }, 3000);
+      });
+
+      // Hover effects
+      document.querySelectorAll('.brand-item').forEach(item => {
+          item.addEventListener('mouseenter', () => {
+              item.style.transform = `rotate(${Math.random() * 4 - 2}deg) translateY(-5px) scale(1.05)`;
+          });
+          item.addEventListener('mouseleave', () => {
+              item.style.transform = 'translateY(0) scale(1)';
+          });
+      });
+
+      // Pause on container hover
+      container.addEventListener('mouseenter', () => {
+          isAutoScroll = false;
+      });
+
+      container.addEventListener('mouseleave', () => {
+          isAutoScroll = true;
+      });
+  </script>
 </div>
-
-
-{{-- <div id="default-carousel" class="relative container mx-auto w-full px-20 items-center justify-center md:hidden" data-carousel="slide">
-   <div class="inline-block justify-center items-center p-4">
-      <h1 class="font-bold text-3xl">Our Brands</h1>
-      <a href="" class="font-bold text-green-300">view all</a>
-   </div>
-   <div class="relative h-56 w-full overflow-hidden rounded-lg md:h-[550px] md:hidden">
-        <div class="duration-700 ease-in-out w-full " data-carousel-item>
-            <img src="/media/images/brands/brand-1.webp" width="350px" height="206px" alt="">
-        </div>
-
-        <div class="duration-700 ease-in-out w-full " data-carousel-item>
-            <img src="/media/images/brands/brand-2.webp" width="350px" height="206px" alt="">
-        </div>
-
-        <div class="duration-700 ease-in-out w-full " data-carousel-item>
-            <img src="/media/images/brands/brand-3.webp" width="350px" height="206px" alt="">
-        </div>
-    </div>
-</div> --}}

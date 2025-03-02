@@ -45,7 +45,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([]);
+        $request->validate([
+        'section_id' => 'required',
+        'branch_id'  => 'required',
+        'name_en' => 'required',
+        'brand_id' => 'required',
+        'price' => 'required',
+        'description_en' => 'required'
+        ]);
 
         $inputs = $request->all();
 
@@ -114,7 +121,14 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([]);
+        $request->validate([
+            'section_id' => 'required',
+            'branch_id'  => 'required',
+            'name_en' => 'required',
+            'brand_id' => 'required',
+            'price' => 'required',
+            'description_en' => 'required'
+        ]);
 
         $inputs = $request->all();
 

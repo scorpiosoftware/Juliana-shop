@@ -11,6 +11,7 @@ use App\Models\Carousel;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductComments;
+use App\Models\StoreSections;
 use App\View\Components\home\brands;
 use Illuminate\Http\Request;
 
@@ -26,8 +27,10 @@ class ShopController extends Controller
         $products = ListProduct::execute($inputs);
         $categories = Category::all();
         $brands = Brand::all();
+        $sections = StoreSections::all();
+        $branches = StoreSections::all();
         $carousel = Carousel::with('images')->first();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel'));
+        return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel','sections','branches'));
     }
 
     public function addComment(Request $request)
@@ -112,8 +115,10 @@ class ShopController extends Controller
         $products = ListProduct::execute($inputs);
         $categories = Category::all();
         $brands = Brand::all();
+        $sections = StoreSections::all();
+        $branches = StoreSections::all();
         $carousel = Carousel::with('images')->first();
         $request->visit();
-        return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel'));
+        return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel','sections','branches'));
     }
 }

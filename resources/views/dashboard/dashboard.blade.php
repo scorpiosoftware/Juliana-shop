@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto mt-10">
-        <div class="text-2xl py-4 font-bold underline text-gray-900 dark:text-white">Dashboard</div>
+        <div class="text-2xl py-4 font-bold underline text-gray-900 d:text-white">Dashboard</div>
         <br>
         <br>
         <div class="flex flex-col md:flex-row justify-center overflow-auto">

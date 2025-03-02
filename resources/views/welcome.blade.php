@@ -4,29 +4,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{{ ENV('APP_NAME')}}</title>
+    <title>{{ ENV('APP_NAME') }}</title>
     <link rel="icon" href="{{ URL::to('media/logo/jamesia.png') }}">
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <link href="/css/carousel.css" rel="stylesheet" />
-    <!-- Libraries Stylesheet -->
-    <link href="/lib/animate/animate.min.css" rel="stylesheet">
-    <link href="/css/product.css" rel="stylesheet">
-    <link href="/css/buyButton.css" rel="stylesheet">
-    <link href="/build/assets/app-Ca4a21vb.css" rel="stylesheet">
-    <link href="/css/lang.css" rel="stylesheet">
-    <link href="/css/toast.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    @vite('resources/css/app.css', 'resources/js/app.js')
     @livewireStyles
-    <!-- End Meta Pixel Code -->
-    <!-- Styles -->
-    {{-- @vite('resources/css/app.css', 'resources/js/app.js') --}}
+
 </head>
 
 <body class="font-sans antialiased">
     <div class="">
+        {{-- <div data-wow-delay=".25s" class="wow bounce">bounce</div> --}}
         @if (Session::has('success'))
             <div id="toast-success" tabindex="-1"
                 class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -56,7 +46,6 @@
                 </div>
             </div>
         @endif
-
         <livewire:add-item-message>
             <div id="toast-cart" tabindex="-1"
                 class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 z-50 justify-center items-center w-96 md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -85,9 +74,7 @@
                     </button>
                 </div>
             </div>
-
-
-            <x-home.navbar :categories="$categories" :carousel="$carousel"/>
+            <x-home.navbar :categories="$categories" :carousel="$carousel" />
             <x-home.speed-dial />
             <x-home.category :categories="$categories" />
             <x-home.carousel :carousel="$carousel" />
@@ -97,12 +84,7 @@
             <br>
             <x-home.brands :brands="$brands" />
             <br>
-            {{-- <x-home.best-seller :bestSeller="$hair_care"
-                title="{{ session('lang') == 'en' ? 'Hair Care' : 'العناية بالشعر' }}" /> --}}
-            <br>
             <x-home.show-category :categories="$categories" />
-            <br>
-            {{-- <x-home.best-seller :bestSeller="$face_care" title="{{ session('lang') == 'en' ? 'Face Care' : 'عناية الوجه' }}" /> --}}
             <br>
             <x-home.footer />
     </div>
