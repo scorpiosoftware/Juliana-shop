@@ -116,7 +116,7 @@
                     <span class="ms-3">Inbox</span>
                 </a>
             </li>
-            {{-- <li>
+            <li>
                 <a href="{{ route('productView.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg d:text-white hover:bg-gray-100 d:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 d:text-gray-400 group-hover:text-gray-900 d:group-hover:text-white"
@@ -128,7 +128,7 @@
                     </svg>
                     <span class="ms-3">Product View</span>
                 </a>
-            </li> --}}
+            </li>
             <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 d:text-white d:hover:bg-gray-700"

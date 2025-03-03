@@ -80,7 +80,7 @@
             <x-home.carousel :carousel="$carousel" />
             <br>
             <x-home.best-seller :bestSeller="$bestSeller"
-                title="{{ session('lang') == 'en' ? 'Best Seller' : 'الاكثر مبيع' }} " />
+                title="{{ session('lang') == 'en' ? 'T-Shirts' : 'الاكثر مبيع' }} " />
             <br>
             <x-home.brands :brands="$brands" />
             <br>

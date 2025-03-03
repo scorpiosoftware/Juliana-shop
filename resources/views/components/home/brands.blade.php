@@ -18,7 +18,7 @@
       let currentTranslateX = 0;
       let scrollTimeout;
       const scrollSpeed = 0.6;
-      let isAutoScroll = true;
+      let isAutoScroll = false;
       const autoScrollSpeed = 1.2;
 
       // Calculate scroll limits
@@ -27,17 +27,17 @@
       const originalWidth = (itemWidth + gap) * items.length - gap;
 
       // Single continuous animation loop
-      function animate() {
-          if (isAutoScroll) {
-              currentTranslateX -= autoScrollSpeed;
-              if (currentTranslateX <= -originalWidth) {
-                  currentTranslateX += originalWidth;
-              }
-              slider.style.transform = `translateX(${currentTranslateX}px)`;
-          }
-          requestAnimationFrame(animate);
-      }
-      animate();
+    //   function animate() {
+    //       if (isAutoScroll) {
+    //           currentTranslateX -= autoScrollSpeed;
+    //           if (currentTranslateX <= -originalWidth) {
+    //               currentTranslateX += originalWidth;
+    //           }
+    //           slider.style.transform = `translateX(${currentTranslateX}px)`;
+    //       }
+    //       requestAnimationFrame(animate);
+    //   }
+    //   animate();
 
       // Mouse wheel handler
       const container = document.querySelector('.brands-container');

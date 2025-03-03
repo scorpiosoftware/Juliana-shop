@@ -4,7 +4,8 @@
             <div class="flex items-center space-x-8">
                 <div class="shrink-0 md:w-32 w-[75px]">
                     <a href="/" title="" class="">
-                        <img class="block" src="{{ URL::to('storage/' . $carousel->logo_url) }}" alt="">
+                        {{-- <img class="block" src="{{ URL::to('storage/' . $carousel->logo_url) }}" alt=""> --}}
+                        <span class="text-2xl text-nowrap font-bold px-4 py-2 bg-green-300 text-white border rounded-full">JULIANA SHOP</span>
                     </a>
                 </div>
             </div>
@@ -175,13 +176,13 @@
         </div> --}}
 
 
-        <div class="flex items-center justify-end space-x-4 p-2 ">
+        {{-- <div class="flex items-center justify-end space-x-4 p-2 ">
             <select class="rounded-lg bg-gray-50 text-base leading-10" name="lang" id="lang"
                 onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
                 <option value="" selected>Language</option>
                 <option value="/lang/en">English</option>
                 <option value="/lang/ar">Arabic</option>
             </select>
-        </div>
+        </div> --}}
     </div>
 </nav>

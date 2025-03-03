@@ -5,21 +5,45 @@
             <div class="flex justify-center items-center mt-2">
                 <a href="{{ route('shop.index') }}"
                     class="font-bold text-green-300 transition-all delay-75 hover:scale-150 hover:underline">
-                   {{ session('lang') == 'en' ? 'view all' : 'عرض الكل' }}
+                    {{ session('lang') == 'en' ? 'view all' : 'عرض الكل' }}
                 </a>
             </div>
 
         </div>
     </div>
-    <div
-        class="grid grid-cols-2 md:grid-cols-4 px-12 md:px-24 gap-4 md:gap-10 py-6shadow-xl md:max-w-screen-xl md:mx-auto mt-2">
-        @foreach ($bestSeller as $item)
-            <livewire:product :item="$item">    
-            <livewire:product :item="$item">    
-            <livewire:product :item="$item">    
-            <livewire:product :item="$item">    
-            <livewire:product :item="$item">    
-            <livewire:product :item="$item">    
-        @endforeach
+
+    <div class="relative w-full max-w-screen-xl mx-auto">
+        <div id="scrollContainer" class="flex space-x-4 overflow-x-scroll scroll-smooth p-4">
+            @foreach ($bestSeller as $item)
+                <livewire:product :item="$item">
+                    <livewire:product :item="$item">
+                        <livewire:product :item="$item">
+                            <livewire:product :item="$item">
+                                <livewire:product :item="$item">
+                                    <livewire:product :item="$item">
+                                        <livewire:product :item="$item">
+                                            <livewire:product :item="$item">
+                                                <livewire:product :item="$item">
+            @endforeach
+        </div>
+        <button id="prevBtn"
+            class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">◀</button>
+        <button id="nextBtn"
+            class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-700 text-white p-2 rounded-full">▶</button>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollContainer = document.getElementById('scrollContainer');
+            const itemWidth = 250 + 16; // 250px fixed width plus any gap (adjust if needed)
+            const scrollAmount = itemWidth * 3; // For 3 items
+    
+            document.getElementById('nextBtn').addEventListener('click', () => {
+                scrollContainer.scrollLeft += scrollAmount;
+            });
+    
+            document.getElementById('prevBtn').addEventListener('click', () => {
+                scrollContainer.scrollLeft -= scrollAmount;
+            });
+        });
+    </script>
 </div>

@@ -26,7 +26,7 @@
       let currentTranslateXCat = 0;
       let scrollTimeoutCat;
       const scrollSpeedCat = 0.6;
-      let isAutoScrollCat = true;
+      let isAutoScrollCat = false;
       const autoscrollSpeedCat = 1.6;
 
       // Calculate scroll limits
@@ -35,17 +35,17 @@
       const originalWidthCat = (itemWidthCat + gapCat) * itemsCat.length - gapCat;
 
       // Single continuous animation loop
-      function animateCat() {
-          if (isAutoScrollCat) {
-              currentTranslateXCat -= autoscrollSpeedCat;
-              if (currentTranslateXCat <= -originalWidthCat) {
-                  currentTranslateXCat += originalWidthCat;
-              }
-              slidercat.style.transform = `translateX(${currentTranslateXCat}px)`;
-          }
-          requestAnimationFrame(animateCat);
-      }
-      animateCat();
+    //   function animateCat() {
+    //       if (isAutoScrollCat) {
+    //           currentTranslateXCat -= autoscrollSpeedCat;
+    //           if (currentTranslateXCat <= -originalWidthCat) {
+    //               currentTranslateXCat += originalWidthCat;
+    //           }
+    //           slidercat.style.transform = `translateX(${currentTranslateXCat}px)`;
+    //       }
+    //       requestAnimationFrame(animateCat);
+    //   }
+    //   animateCat();
 
       // Mouse wheel handler
       const containerCat = document.querySelector('.category-container');
