@@ -3,24 +3,16 @@
    <div class="brands-slider">
       @foreach ($brands as $brand)
       <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
-      <div class="brand-item"><img src="{{ URL::to('storage/'.$brand->image_url) }}" alt="Brand 1"></div>
       @endforeach
    </div>
    <script>
         // Duplicate items for seamless loop
-        const slider = document.querySelector('.brands-slider');
+      const slider = document.querySelector('.brands-slider');
       const items = document.querySelectorAll('.brand-item');
-      items.forEach(item => {
-          const clone = item.cloneNode(true);
-          slider.appendChild(clone);
-      });
+    //   items.forEach(item => {
+    //       const clone = item.cloneNode(true);
+    //       slider.appendChild(clone);
+    //   });
 
       // Scroll variables
       let currentTranslateX = 0;

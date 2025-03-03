@@ -3,10 +3,13 @@
         <h2 class="category-title">{{ session('lang') == 'en' ? 'Our Categories' : 'اصنافنا' }}</h2>
         <div class="category-slider">
            @foreach ($categories as $item)
-           <div class=" category-item">
-            <div class=""><img src="{{ URL::to('storage/'.$item->image_url) }}" alt="Brand 1"></div>
+           @if ($item->image_url != null)
+           <div class=" category-item inline-block justify-center items-center">
+            <div class=""><img src="{{ URL::to('storage/'.$item->image_url) }}" alt=""></div>
             <p class="text-white font-bold">{{ $item->name_en }}</p>
            </div>
+           @endif
+
            @endforeach
         </div>
      </div>
@@ -14,17 +17,17 @@
         // Duplicate itemsCat for seamless loop
       const slidercat = document.querySelector('.category-slider');
       const itemsCat = document.querySelectorAll('.category-item');
-      itemsCat.forEach(item => {
-          const clone = item.cloneNode(true);
-          slidercat.appendChild(clone);
-      });
+    //   itemsCat.forEach(item => {
+    //       const clone = item.cloneNode(true);
+    //       slidercat.appendChild(clone);
+    //   });
 
       // Scroll variables
       let currentTranslateXCat = 0;
       let scrollTimeoutCat;
       const scrollSpeedCat = 0.6;
       let isAutoScrollCat = true;
-      const autoscrollSpeedCat = 0.2;
+      const autoscrollSpeedCat = 1.6;
 
       // Calculate scroll limits
       const itemWidthCat = itemsCat[0].offsetWidth;
