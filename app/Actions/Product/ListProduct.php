@@ -39,9 +39,9 @@ class ListProduct {
             $sectionsArray = $inputs['sections'];
             $records = $records->whereIn('section_id', $sectionsArray);
         }
-        if (!empty($inputs['branches'])) {
-            $branchesArray = $inputs['branches'];
-            $records = $records->whereIn('branch_id', $branchesArray);
+        if (!empty($inputs['branch'])) {
+            $branch = $inputs['branch'];
+            $records = $records->where('branch_id', $branch);
         }
         if(!empty($inputs['sorting'])) {
             switch ($inputs['sorting']) {

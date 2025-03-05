@@ -16,7 +16,6 @@
 
 <body class="font-sans antialiased">
     <div class="">
-        {{-- <div data-wow-delay=".25s" class="wow bounce">bounce</div> --}}
         @if (Session::has('success'))
             <div id="toast-success" tabindex="-1"
                 class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -79,8 +78,9 @@
             <x-home.category :categories="$categories" />
             <x-home.carousel :carousel="$carousel" />
             <br>
-            <x-home.best-seller :bestSeller="$bestSeller"
-                title="{{ session('lang') == 'en' ? 'T-Shirts' : 'الاكثر مبيع' }} " />
+            <x-home.best-seller :bestSeller="$bestSeller" title="{{ session('lang') == 'en' ? 'T-Shirts' : 'الاكثر مبيع' }} " />
+            <br>
+            <x-home.best-seller :bestSeller="$perfumes" title="{{ session('lang') == 'en' ? $perfumes[0]->categories()->first()->name_en : 'الاكثر مبيع' }} " />
             <br>
             <x-home.brands :brands="$brands" />
             <br>

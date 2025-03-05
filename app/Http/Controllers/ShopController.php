@@ -6,6 +6,7 @@ use App\Actions\Brand\ListBrand;
 use App\Actions\Category\ListCategory;
 use App\Actions\Product\GetProduct;
 use App\Actions\Product\ListProduct;
+use App\Models\Branch;
 use App\Models\Brand;
 use App\Models\Carousel;
 use App\Models\Category;
@@ -28,7 +29,7 @@ class ShopController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $sections = StoreSections::all();
-        $branches = StoreSections::all();
+        $branches = Branch::all();
         $carousel = Carousel::with('images')->first();
         return view('shop.index', compact('products', 'categories', 'brands', 'inputs', 'carousel','sections','branches'));
     }
@@ -116,7 +117,7 @@ class ShopController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         $sections = StoreSections::all();
-        $branches = StoreSections::all();
+        $branches = Branch::all();
         $carousel = Carousel::with('images')->first();
         $request->visit();
         return view('shop.index', compact('products', 'categories', 'brands', 'inputs','carousel','sections','branches'));

@@ -36,14 +36,11 @@ class HomeController extends Controller
             session()->put('lang','en');
         }
         $bestSeller = ListProductsByCategory::execute(1);
-        $hair_care = ListProductsByCategory::execute(2);
-        $body_care = ListProductsByCategory::execute(3);
-        $face_care = ListProductsByCategory::execute(4);
-        $sun_care = ListProductsByCategory::execute(5);
+        $perfumes = ListProductsByCategory::execute(10);
         $categories = ListCategory::execute();
         $brands = ListBrand::execute();
         $carousel = Carousel::with('images')->first();
-        return view('welcome', compact('bestSeller','hair_care','body_care','face_care','sun_care', 'categories', 'brands','carousel'));
+        return view('welcome', compact('bestSeller','perfumes','categories', 'brands','carousel'));
     
     }
 

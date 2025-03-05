@@ -26,46 +26,90 @@
                     </select>
                 </div>
                 <div class="border p-2">
-                    <h1>{{ session('lang') == 'en' ? 'Categories' : 'فئات' }}</h1>
-                    @foreach ($categories as $cat)
-                        <div class="flex items-center">
-                            <input id="categories" type="checkbox" value="{{ $cat->id }}" name="categories[]"
-                                class="w-4
-                                h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                                dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
-                                dark:border-gray-600"
-                                @if (!empty(request()->input('categories'))) @foreach (request()->input('categories') as $index)
-                                @if ($index == $cat->id)
-                                checked
-                                @break @endif
-                                @endforeach
-                    @endif
-                    >
-                    <label for="categories"
-                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ session('lang') == 'en' ? $cat->name_en : $cat->name_ar }}</label>
-
-                </div>
-                @endforeach
+                    <div class="border p-2">
+                        <h1>{{ session('lang') == 'en' ? 'Categories' : 'فئات' }}</h1>
+                        @foreach ($categories as $cat)
+                            <div class="flex items-center">
+                                <input id="categories" type="checkbox" value="{{ $cat->id }}" name="categories[]"
+                                    class="w-4
+                                    h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                    dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700
+                                    dark:border-gray-600"
+                                    @if (!empty(request()->input('categories'))) @foreach (request()->input('categories') as $index)
+                                    @if ($index == $cat->id)
+                                    checked
+                                    @break @endif
+                                    @endforeach
+                        @endif
+                        >
+                        <label for="categories"
+                            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ session('lang') == 'en' ? $cat->name_en : $cat->name_ar }}</label>
+    
+                    </div>
+                    @endforeach 
+                    </div>
+  
         </div>
 
         <div class="border p-2">
-            <h1>{{ session('lang') == 'en' ? 'Brands' : 'العلامات التجارية' }}</h1>
-            @foreach ($brands as $brand)
+            <div class="border p-2">
+                <h1>{{ session('lang') == 'en' ? 'Brands' : 'العلامات التجارية' }}</h1>
+                @foreach ($brands as $brand)
+                    <div class="flex items-center">
+                        <input id="brands" type="checkbox" value="{{ $brand->id }}" name="brands[] class="w-4 h-4
+                            text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            @if (!empty(request()->input('brands'))) @foreach (request()->input('brands') as $b)
+                                    @if ($b == $brand->id)
+                                    checked
+                                    @break @endif
+                            @endforeach
+                @endif>
+    
+                <label for="brands"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $brand->name_en }}</label>
+            </div>
+            @endforeach
+            </div>
+    
+    </div>
+    <div class="border p-2">
+        <div class="border p-2">
+            <h1>{{ session('lang') == 'en' ? 'STORES' : 'المتاجر' }}</h1>
+            @foreach ($sections as $section)
                 <div class="flex items-center">
-                    <input id="brands" type="checkbox" value="{{ $brand->id }}" name="brands[] class="w-4 h-4
+                    <input id="sections" type="checkbox" value="{{ $section->id }}" name="sections[] class="w-4 h-4
                         text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                         dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        @if (!empty(request()->input('brands'))) @foreach (request()->input('brands') as $b)
-                                @if ($b == $brand->id)
+                        @if (!empty(request()->input('sections'))) @foreach (request()->input('sections') as $b)
+                                @if ($b == $section->id)
                                 checked
                                 @break @endif
                         @endforeach
             @endif>
 
-            <label for="brands"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $brand->name_en }}</label>
+            <label for="sections"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $section->name }}</label>
         </div>
         @endforeach
+    </div>
+
+    </div>
+    <div class="border p-2">
+        <div class="border p-2">
+            <h1>{{ session('lang') == 'en' ? 'Branches' : 'المتاجر' }}</h1>
+            <select name="branch" id="branches">
+                <option value=""></option>
+                @foreach ($branches as $branch)
+                    <option value="{{ $branch->id }}"
+                        @if (!empty(request()->input('branch'))) @if (request()->input('branch') == $branch->id)
+                    selected @endif
+                        @endif>{{ $branch->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+
     </div>
 
     <div class="border p-2">
@@ -137,49 +181,117 @@
         </div>
 
         <div class="border p-2">
-            <h1>{{ session('lang') == 'en' ? 'Brands' : 'العلامات التجارية' }}</h1>
-            @foreach ($brands as $brand)
+            <div class="border p-2">
+                <h1>{{ session('lang') == 'en' ? 'Brands' : 'العلامات التجارية' }}</h1>
+                @foreach ($brands as $brand)
+                    <div class="flex items-center">
+                        <input id="brands" type="checkbox" value="{{ $brand->id }}" name="brands[] class="w-4 h-4
+                            text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
+                            dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                            @if (!empty(request()->input('brands'))) @foreach (request()->input('brands') as $b)
+                                    @if ($b == $brand->id)
+                                    checked
+                                    @break @endif
+                            @endforeach
+                @endif>
+
+                <label for="brands"
+                    class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $brand->name_en }}</label>
+            </div>
+            @endforeach
+        </div>
+
+    </div>
+
+    <div class="border p-2">
+        <div class="border p-2">
+            <h1>{{ session('lang') == 'en' ? 'STORES' : 'المتاجر' }}</h1>
+            @foreach ($sections as $section)
                 <div class="flex items-center">
-                    <input id="brands" type="checkbox" value="{{ $brand->id }}" name="brands[] class="w-4 h-4
+                    <input id="section_id-{{ $section->id }}" type="checkbox" value="{{ $section->id }}" name="sections[] class="w-4 h-4
                         text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
                         dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                        @if (!empty(request()->input('brands'))) @foreach (request()->input('brands') as $b)
-                                @if ($b == $brand->id)
+                        @if (!empty(request()->input('sections'))) @foreach (request()->input('sections') as $b)
+                                @if ($b == $section->id)
                                 checked
                                 @break @endif
                         @endforeach
             @endif>
 
-            <label for="brands"
-                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $brand->name_en }}</label>
+            <label for="section_id-{{ $section->id }}"
+                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $section->name }}</label>
         </div>
         @endforeach
     </div>
-    
-    <div class="border p-2">
-        <h1>{{ session('lang') == 'en' ? 'STORES' : 'المتاجر' }}</h1>
-        @foreach ($sections as $section)
-            <div class="flex items-center">
-                <input id="section" type="checkbox" value="{{ $section->id }}" name="sections[] class="w-4 h-4
-                    text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600
-                    dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    @if (!empty(request()->input('sections'))) @foreach (request()->input('sections') as $b)
-                            @if ($b == $section->id)
-                            checked
-                            @break @endif
-                    @endforeach
-        @endif>
 
-        <label for="brands"
-            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $section->name }}</label>
     </div>
-    @endforeach
-</div>
+    <div class="border p-2">
+        <div class="border p-2">
+            <h1>{{ session('lang') == 'en' ? 'Branches' : 'المتاجر' }}</h1>
+            <select name="branch" id="branchesSelect">
+                <option value=""></option>
+                @foreach ($branches as $branch)
+                    <option value="{{ $branch->id }}"
+                        @if (!empty(request()->input('branch'))) @if (request()->input('branch') == $branch->id)
+                    selected @endif
+                        @endif>{{ $branch->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        {{-- <script>
+            $(document).ready(function() {
+                $("#section_id-{{ $section->id }}").on('change', function() {
+                    var sectionId = $(this).val();
+                    if (sectionId) {
+                        // Show loading indicator
+                        $('#loading').show();
+                        // $('#branchesSelect').show();
+                        $('#branchesSelect').empty();
+                        // Send AJAX request
+                        $.ajax({
+                            url: '/api/branches/' + sectionId + '/section',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data) {
+                                console.log(data);
+                                // Hide loading indicator
+                                $('#loading').hide();
+                                // Clear existing rows
+                                $('#branchesSelect tbody').empty();
+                                // Append new rows with AJAX data
+                                if (data.length > 0) {
+                                    $.each(data, function(key, branch) {
+                                        $('#branchesSelect').append(
+                                        "<option value='" + branch.id + "'>" + branch.name + "</option>"
+                                        );
+                                    });
+                                    $('#branchesSelect').show();
+                                } else {
+                                    $('#branchesSelect').empty();
+                                    $('#branchesSelect').show();
+                                }
+                            },
+                            error: function() {
+                                $('#loading').hide();
+                                alert('Failed to fetch branches. Please try again.');
+                            }
+                        });
+                    } else {
+                        // Clear the table if no section is selected
+                        $('#branchesSelect').empty();
+                        $('#branchesSelect').hide();
+                    }
+                });
+            });
+        </script> --}}
+    </div>
 
     <div class="border p-2">
         <h1>{{ session('lang') == 'en' ? 'Price $' : 'السعر $' }}</h1>
         <div class="flex space-x-2 justify-between items-center ">
-            <input type="number" step="any" min="0" class="w-24 h-8" name="min_price" placeholder="From 0 $"
+            <input type="number" step="any" min="0" class="w-24 h-8" name="min_price"
+                placeholder="From 0 $"
                 @if (!empty(request()->input('min_price'))) value = {{ request()->input('min_price') }} @endif />
             <input type="number" step="any" min="0" class="w-24 h-8" name="max_price"
                 placeholder="To Max $"
@@ -188,7 +300,6 @@
     </div>
     <div class="flex justify-end text-sm pt-2">
         <button type="submit" class=" bg-blue-700 p-2 rounded-md text-white">Apply</button>
-        {{-- <button type="reset" class=" bg-blue-300 p-2 rounded-md text-white">Clear</button> --}}
     </div>
     </form>
     </div>
@@ -201,15 +312,12 @@
                 {{ session('lang') == 'en' ? 'Filter' : 'تنقية' }}
             </button>
         </div>
-        <div class="grid grid-cols-3 md:grid-cols-4 gap-4 px-10 md:px-0">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-10 md:px-0">
             @if ($products->count() <= 0)
                 <div class="text-center flex items-center justify-center w-full">
                     {{ session('lang') == 'en' ? 'No results found' : 'لم يتم العثور على نتائج' }}</div>
             @endif
             @foreach ($products as $item)
-                <x-home.product :item="$item" />
-                <x-home.product :item="$item" />
-                <x-home.product :item="$item" />
                 <x-home.product :item="$item" />
             @endforeach
             {{-- <nav aria-label="Page navigation example" class="p-4">

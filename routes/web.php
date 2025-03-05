@@ -39,7 +39,6 @@ Route::get('/lang/{locale}',function(string $locale){
 });
 
 Route::group(['prefix' => ''], function () {
-    
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::resource('shop', ShopController::class);
     Route::get('/show-cart/address', [OrderController::class, 'create'])->name('address');
