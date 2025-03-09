@@ -77,10 +77,8 @@
             <x-home.speed-dial />
             <x-home.category :categories="$categories" />
             <x-home.carousel :carousel="$carousel" />
-            <br>
+        
             <x-home.best-seller :bestSeller="$bestSeller" title="{{ session('lang') == 'en' ? 'T-Shirts' : 'الاكثر مبيع' }} " />
-            <br>
-            <x-home.best-seller :bestSeller="$perfumes" title="{{ session('lang') == 'en' ? $perfumes[0]->categories()->first()->name_en : 'الاكثر مبيع' }} " />
             <br>
             <x-home.brands :brands="$brands" />
             <br>

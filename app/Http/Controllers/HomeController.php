@@ -36,7 +36,8 @@ class HomeController extends Controller
             session()->put('lang','en');
         }
         $bestSeller = ListProductsByCategory::execute(1);
-        $perfumes = ListProductsByCategory::execute(10);
+        // dd($bestSeller[0]->categories()->first()->id);
+        $perfumes = ListProductsByCategory::execute(category_id: 10);
         $categories = ListCategory::execute();
         $brands = ListBrand::execute();
         $carousel = Carousel::with('images')->first();

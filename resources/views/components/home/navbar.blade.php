@@ -1,188 +1,176 @@
-<nav class="bg-slate-100 dark:bg-gray-800 antialiased">
-    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-8">
-                <div class="shrink-0 md:w-32 w-[75px]">
-                    <a href="/" title="" class="">
-                        {{-- <img class="block" src="{{ URL::to('storage/' . $carousel->logo_url) }}" alt=""> --}}
-                        <span class="text-2xl text-nowrap font-bold px-4 py-2 bg-green-300 text-white border rounded-full">JULIANA SHOP</span>
-                    </a>
-                </div>
+<nav class="bg-[#FCE38A] shadow-xl antialiased">
+    <div class="max-w-screen-2xl px-4 mx-auto py-4">
+        <div class="flex items-center justify-between gap-6">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-8 rounded-md bg-[#71C9CE] p-2">
+                <a href="/" class="flex items-center gap-2 group">
+                    <span
+                        class="text-xl font-bold tracking-tight text-white group-hover:text-[#eeeeee] transition-colors">
+                        JULIANA SHOP
+                    </span>
+                </a>
             </div>
 
-            <form action="{{ route('filter.products') }}" method="POST"
-                class="md:flex items-center max-w-sm mx-auto hidden">
+            <!-- Search Form -->
+            <form action="{{ route('filter.products') }}" method="POST" class="hidden lg:flex flex-1 max-w-2xl mx-8">
                 @csrf
-                @method('POST')
-                <label for="simple-search" class="sr-only">Search</label>
                 <div class="relative w-full">
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
+                    <input type="text" name="search" id="simple-search"
+                        class="w-full pl-12 pr-4 py-3 bg-white border border-gray-700 rounded-lg 
+                               text-white placeholder-gray-400 hover:placeholder-white
+                               hover:bg-[#5f9e9d] focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none focus:border-transparent transition-all"
+                        placeholder="Search products..." />
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-4">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </div>
-                    <input type="text" name="search" id="simple-search"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                        placeholder="Search product name..." />
                 </div>
                 <button type="submit"
-                    class="p-2.5 ms-2 text-sm font-medium text-black bg-black-400 rounded-lg border border-gray-400 hover:bg-blue-500 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 ">
-                    <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
-                    <span class="sr-only">Search</span>
+                    class="ml-2 px-6 py-3 bg-[#71C9CE] hover:bg-[#61dfe6] text-white font-medium 
+                               rounded-lg transition-colors duration-200 shadow-sm hover:bg-[#5f9e9d] focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
+                    Search
                 </button>
             </form>
 
-            <div class="flex items-center space-x-2">
+            <!-- Action Icons -->
+            <div class="flex items-center gap-4">
                 <livewire:cart>
-                    <div class="bg-slate-50 rounded-full px-2 py-2">
-                        <a href="{{ route('wishlist.index') }}"><i class="fa fa-heart"></i></a>
-                    </div>
-                    <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button"
-                        class="inline-flex items-center bg-slate-50 rounded-full  justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
-                        <svg class="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-width="2"
-                                d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+
+                    <a href="{{ route('wishlist.index') }}"
+                        class="p-2.5 bg-[#71C9CE] rounded-full transition-colors duration-200 hover:bg-[#5f9e9d] focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
-                        @guest
-                            @if (session('lang') == 'en')
-                                Account
+                    </a>
+
+                    <!-- User Dropdown Container -->
+                    <div class="relative">
+                        <button id="userDropdownButton" data-dropdown-toggle="userDropdown"
+                            class="flex items-center gap-2 px-4 py-2 bg-[#71C9CE] rounded-full 
+                   transition-colors duration-200 group hover:bg-[#5f9e9d] focus:ring-2 focus:ring-[#5f9e9d] focus:outline-none">
+                            <svg class="w-5 h-5 text-white" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                            <span class="text-sm font-medium text-white">
+                                @auth{{ Auth::user()->name }}
                             @else
-                                الحساب
-                            @endif
-                        @endguest
-                        @auth
-                            {{ Auth::user()->name }}
-                        @endauth
-                        <svg class="w-4 h-4 text-gray-900 dark:text-white ms-1" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m19 9-7 7-7-7" />
+                            Account @endauth
+                        </span>
+                        <svg class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
                         </svg>
                     </button>
 
-                    <div id="userDropdown1"
-                        class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
-
+                    <!-- Dropdown Menu -->
+                    <div id="userDropdown"
+                        class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl 
+                border border-gray-200 divide-y divide-gray-100 z-50 origin-top-right
+                transition-opacity duration-200">
                         @guest
-                            <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                                <li><a href="{{ route('login') }}" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        @if (session('lang') == 'en')
-                                            Login
-                                        @else
-                                            تسجيل
-                                        @endif
-                                    </a></li>
-                                <li><a href="{{ route('register') }}" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        @if (session('lang') == 'en')
-                                            Sign Up
-                                        @else
-                                            انشاء
-                                        @endif
-
-                                    </a></li>
-                            </ul>
+                            <div class="py-1">
+                                <a href="{{ route('login') }}"
+                                    class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                          transition-colors">
+                                    <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                                </a>
+                                <a href="{{ route('register') }}"
+                                    class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                          transition-colors">
+                                    <i class="fas fa-user-plus mr-2"></i>Create Account
+                                </a>
+                            </div>
                         @endguest
 
-
                         @auth
-                            @if (Auth::user()->role_id == 1)
-                                <div class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
-                                    <a href="{{ route('dashboard.index') }}" class="px-2">
-                                        @if (session('lang') == 'en')
-                                            Dashboard
-                                        @else
-                                            قائمة الاعدادات
-                                        @endif
-
+                            <div class="py-1">
+                                @if (Auth::user()->role_id == 1)
+                                    <a href="{{ route('dashboard.index') }}"
+                                        class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                          transition-colors">
+                                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
                                     </a>
-                                </div>
-                            @endif
-                            <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
-                                <form action="{{ route('logout') }}" method="POST">
+                                @endif
+                                <a href="#"
+                                    class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 
+                          transition-colors">
+                                    <i class="fas fa-user-circle mr-2"></i>Profile
+                                </a>
+                            </div>
+                            <div class="py-1">
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    @method('POST')
-                                    <button title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        @if (session('lang') == 'en')
-                                            Sign Out
-                                        @else
-                                            خروج
-                                        @endif
-
-
+                                    <button type="submit"
+                                        class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-blue-50 
+                                   hover:text-blue-600 transition-colors">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>Sign Out
                                     </button>
-
                                 </form>
                             </div>
                         @endauth
-
                     </div>
-
-                    <button type="button" data-collapse-toggle="ecommerce-navbar-menu-1"
-                        aria-controls="ecommerce-navbar-menu-1" aria-expanded="false"
-                        class="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-gray-700 p-2 text-gray-900 dark:text-white">
-                        <span class="sr-only">
-                            Open Menu
-                        </span>
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" fill="none" viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
-                                d="M5 7h14M5 12h14M5 17h14" />
-                        </svg>
-                    </button>
-            </div>
+                </div>
         </div>
+    </div>
+    <!-- Mobile Menu Button -->
+    <div class="w-full mx-auto text-center mt-4">
+        <button data-collapse-toggle="mobile-menu"
+            class="lg:hidden p-2.5  border-2  border-white rounded-lg w-full transition-colors">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden mt-4 hidden">
+        <div class="pt-4 border-t border-gray-800">
+            <form class="mb-6">
+                <div class="relative">
+                    <input type="text"
+                        class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg 
+                                      text-white placeholder-gray-400 focus:outline-none focus:ring-2 
+                                      focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Search products...">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </form>
 
-        <div id="ecommerce-navbar-menu-1"
-            class="bg-gray-50 dark:bg-gray-700 dark:border-gray-600 border border-gray-200 rounded-lg py-3 hidden px-4 mt-4">
-            <ul class="text-gray-900 text-sm font-medium dark:text-white space-y-3">
+            <nav class="grid gap-2">
                 @foreach ($categories as $item)
-                    <li>
-                        <form action="{{ route('filter.products') }}" method="POST">
-                            @csrf
-                            @method('POST')
-                            <input type="text" class="hidden" value="{{ $item->id }}" name="categories[]"
-                                id="">
-                            <button type="submit"
-                                class="transition-all delay-75 text-sm hover:scale-105 hover:text-black  border-b-2 p-1 text-slate-600"
-                                href="">
+                    <form action="{{ route('filter.products') }}" method="POST">
+                        @csrf
+                        <input type="hidden" value="{{ $item->id }}" name="categories[]">
+                        <button type="submit"
+                            class="w-full px-6 py-3 text-left text-white hover:bg-gray-800 rounded-lg 
+                                       transition-colors duration-200 flex items-center gap-3">
+                            <span class="flex-1">
                                 @if (session('lang') == 'en')
                                     {!! $item->name_en !!}
                                 @else
                                     {!! $item->name_ar !!}
                                 @endif
-
-                            </button>
-                        </form>
-                    </li>
+                            </span>
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </form>
                 @endforeach
-            </ul>
+            </nav>
         </div>
-        {{-- <div class="flex items-center justify-end space-x-4 p-2">
-            <a href="/lang/en"><img src="/media/images/en.png"
-                    class="w-6 h-6 shadow-lg transition-all delay-75 hover:scale-110" alt=""></a>
-            <a href="/lang/ar"><img src="/media/images/ar.png"
-                    class="w-6 h-6 shadow-lg transition-all delay-75 hover:scale-110" alt=""></a>
-        </div> --}}
-
-
-        {{-- <div class="flex items-center justify-end space-x-4 p-2 ">
-            <select class="rounded-lg bg-gray-50 text-base leading-10" name="lang" id="lang"
-                onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                <option value="" selected>Language</option>
-                <option value="/lang/en">English</option>
-                <option value="/lang/ar">Arabic</option>
-            </select>
-        </div> --}}
     </div>
+</div>
 </nav>

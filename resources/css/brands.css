@@ -18,7 +18,7 @@ body {
     justify-items: center;
     width: 90%;
     padding: 40px;
-    background: linear-gradient(145deg, #0e0e0e, #87e77b);
+    background: linear-gradient(145deg, #d1c2c2, #FCE38A);
     border-radius: 20px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
     overflow: hidden;
@@ -45,7 +45,7 @@ body {
 }
 
 .brands-title {
-    color: #fff;
+    color: #030303;
     font-size: 2.5em;
     margin-bottom: 30px;
     text-align: center;
@@ -61,8 +61,8 @@ body {
 
 .brand-item {
     flex-shrink: 0;
-    width: 160px;
-    height: 100px;
+    width: 250px;
+    height: auto;
     background: rgba(255,255,255,0.1);
     border-radius: 15px;
     display: flex;
@@ -73,6 +73,13 @@ body {
     cursor: pointer;
     transform-style: preserve-3d;
 }
+@media (max-width: 480px){
+    .brand-item{
+        width: 135px;
+        height: auto;
+    }
+}
+
 
 .brand-item:hover {
     transform: translateY(-5px) scale(1.05);

@@ -4,9 +4,9 @@
         <div class="category-slider">
            @foreach ($categories as $item)
            @if ($item->image_url != null)
-           <div class=" category-item inline-block justify-center items-center">
+           <div class="category-item inline-block justify-center items-center p-2.5">
             <div class=""><img src="{{ URL::to('storage/'.$item->image_url) }}" alt=""></div>
-            <p class="text-white font-bold">{{ $item->name_en }}</p>
+            <p class="text-black font-bold">{{ $item->name_en }}</p>
            </div>
            @endif
 

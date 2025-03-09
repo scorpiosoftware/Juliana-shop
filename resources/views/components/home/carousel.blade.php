@@ -1,6 +1,6 @@
 <div id="default-carousel" class="relative w-full h-full  wow z-0 fadeInUp mx-auto" data-carousel="slide" data-wow-delay="0.1s">
     <!-- Carousel wrapper -->
-    <div class="relative h-32 overflow-hidden rounded-lg md:h-[600px]  mx-auto">
+    <div class="relative h-32 overflow-hidden rounded-lg md:h-[450px] mx-auto">
          <!-- Item 1 -->
          @foreach ($carousel->images as $image)
          <div class="hidden duration-700 ease-in-out" data-carousel-item>
